@@ -1,9 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HighlightElementRef } from './shared/directives/highlight-element-ref';
+import { HighlightHostbinding } from './shared/directives/highlight-hostbinding';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, HighlightElementRef, HighlightHostbinding],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

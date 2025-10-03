@@ -1,59 +1,39 @@
-# AngularZeroToHero
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
-
-## Development server
-
-To start a local development server, run:
-
 ```bash
 ng serve
 ```
+### Directive
+A Directive in Angular is a class that changes the appearance, behavior, or layout of elements dynamically.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- ***Component Directives:*** A Component is a special type of directive that has a template and is used to build UI views. Components have their own templates, styles, and logic.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- ***Structural Directives:*** Structural Directives are Angular directives that change the structure of the DOM by adding or removing elements using *ngIf, *ngFor, or *ngSwitch.
 
-```bash
-ng generate component component-name
+
+- ***Attribute Directives:*** Attribute Directives are used to change the appearance or behavior of DOM elements in Angular by modifying their attributes or styles using ngClass, ngStyle, or ngModel.
+
+### We can create Custom Directive using Angular CLI:
+```
+ng generate directive directive_name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+### So, we can create Custom Directive for highlight using Angular CLI:
+```
+ng generate directive highlight
 ```
 
-## Building
+A ***custom directive*** is created with the ```@Directive``` decorator, where the ***selector*** ```[appHighlight]``` is defined. It can then be used in the host element as an attribute.
 
-To build the project run:
+```
+import { Directive } from '@angular/core';
 
-```bash
-ng build
+@Directive({
+  selector: '[appHighlight]'
+})
+export class Highlight {
+
+  constructor() { }
+
+}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
