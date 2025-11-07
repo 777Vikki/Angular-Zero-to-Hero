@@ -1,0 +1,92 @@
+.form-container {
+  max-width: 550px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  h2, h3 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .form-group, .form-array {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border 0.3s;
+    &:focus {
+      border-color: #007bff;
+    }
+  }
+
+  .array-item {
+    background: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .add-btn, .delete-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .add-btn {
+    background-color: #28a745;
+    color: white;
+    &:hover {
+      background-color: #218838;
+    }
+  }
+
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    &:hover {
+      background-color: #c82333;
+    }
+  }
+
+  .form-actions {
+    text-align: center;
+  }
+
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover {
+      background-color: #0069d9;
+    }
+  }
+
+  .error {
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+}

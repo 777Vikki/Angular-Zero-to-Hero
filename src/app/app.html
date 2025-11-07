@@ -1,1 +1,92 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form-container">
+  <h2>Sign Up</h2>
 
+  <!-- Name -->
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" formControlName="name" (input)="onNameInput($event)" />
+    <div class="error" *ngIf="signUpForm.get('name')?.touched && signUpForm.get('name')?.hasError('required')">
+      Name is required.
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label>Email</label>
+    <input type="text" formControlName="email" />
+    <div class="error" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.hasError('required')">
+      Email is required.
+    </div>
+    <div class="error" *ngIf="signUpForm.get('email')?.hasError('email')">
+      Invalid email format.
+    </div>
+  </div>
+
+  <!-- Companies -->
+  <div formArrayName="companies" class="form-array">
+    <h3>Companies</h3>
+    <div *ngFor="let company of companies.controls; let i = index" [formGroupName]="i" class="array-item">
+      <label>Company {{ i + 1 }}</label>
+      <input type="text" formControlName="companyName" placeholder="Company Name" />
+      <div class="error"
+        *ngIf="company.get('companyName')?.touched && company.get('companyName')?.hasError('required')">
+        Company name is required.
+      </div>
+
+      <input type="text" formControlName="location" placeholder="Location" />
+      <div class="error" *ngIf="company.get('location')?.touched && company.get('location')?.hasError('required')">
+        Location is required.
+      </div>
+
+      <button *ngIf="companies.length > 1" type="button" class="delete-btn" (click)="deleteCompany(i)">Delete</button>
+    </div>
+    <button type="button" class="add-btn" (click)="addCompany()">Add Company</button>
+  </div>
+
+  <!-- Phone Numbers -->
+  <div formArrayName="phoneNumbers" class="form-array">
+    <h3>Phone Numbers</h3>
+    <div *ngFor="let phoneNumber of phoneNumbers.controls; let i = index" class="array-item">
+      <input type="text" [formControlName]="i" placeholder="Phone Number" />
+      <div class="error" *ngIf="phoneNumber.touched && phoneNumber.hasError('required')">
+        Phone number is required.
+      </div>
+      <button *ngIf="phoneNumbers.length > 1" type="button" class="delete-btn"
+        (click)="deletePhoneNumber(i)">Delete</button>
+    </div>
+    <button type="button" class="add-btn" (click)="addPhoneNumber()">Add Phone Number</button>
+  </div>
+
+  <!-- Password Group -->
+  <div formGroupName="passwordGroup" class="form-group">
+    <h3>Password</h3>
+    <input type="password" formControlName="password" placeholder="Password" />
+    <div class="error" *ngIf="signUpForm.get('passwordGroup.password')?.hasError('required')">
+      Password is required.
+    </div>
+    <div class="error" *ngIf="signUpForm.get('passwordGroup.password')?.hasError('minlength')">
+      Password must be at least 6 characters.
+    </div>
+    <div class="error" *ngIf="signUpForm.get('passwordGroup.password')?.hasError('maxlength')">
+      Password cannot exceed 12 characters.
+    </div>
+    <div class="error" *ngIf="signUpForm.get('passwordGroup.password')?.hasError('spaceError')">
+      Password cannot start or end with a space.
+    </div>
+    <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" />
+    <div class="error"
+      *ngIf="signUpForm.get('passwordGroup.confirmPassword')?.touched && signUpForm.get('passwordGroup.confirmPassword')?.hasError('required')">
+      Confirm password is required.
+    </div>
+    <div class="error" *ngIf="
+      signUpForm.get('passwordGroup')?.hasError('passwordMisMatch') &&
+      signUpForm.get('passwordGroup.confirmPassword')?.touched
+    ">
+      Passwords do not match.
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit">Submit</button>
+  </div>
+</form>
